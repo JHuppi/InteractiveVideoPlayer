@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+#video-container {
+    position: relative;
+}
+#video {
+    width: 100%;
+}
+
+button {
+    border: none;
+    background: transparent;
+}
+
+#time-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    opacity: .75;
+}
+
+#controls {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    background: #111;
+    opacity: 0;
+}
+#video-container:hover #controls {
+    display: inherit;
+    opacity: 0.75;
+}
+
+.para {
+    display: block;
+    margin: 10px 20px;
+    }
+
+.para p {
+    display: inline;
+    }
