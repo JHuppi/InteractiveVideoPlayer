@@ -14,11 +14,16 @@
                 <source src="video/video.ogg" type="video/ogg">
                 <track kind="subtitles" src="video/captions.vtt" srclang="en" label="captions">
             </video>
-            <div id="time-bar">
-                <input type="range" id="time" value="0">
+            <div id="bar-container">
+                <div id="bar">
+                    <div id="progress">
+                        <span id="buffer"></span>
+                        <span id="time-bar"></span>
+                    </div>
+                </div>
                 <div id="controls">
                     <button type="button" id="play-pause"><img src="icon/play-icon.png" alt="play"></button>
-                    <div class="duration">Duration</div>
+                    <div id="duration">Duration</div>
                     <button type="button" id="mute-unmute"><img src="icon/volume-on-icon.png" alt="mute unmute"></button>
                     <button type="button" id="full-screen"><img src="icon/fullscreen-icon.png" alt="fullscreen mode"></button>
                 </div>
