@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 
-/*::-webkit-media-controls {
+::-webkit-media-controls {
     display: none;
-}*/
+}
 
 #video-container {
     position: relative;
@@ -27,28 +27,29 @@ button:focus {
     bottom: 0;
     left: 0;
     width: 100%;
-    /*z-index: 2147483647;*/
+    z-index: 2147483647;
     margin-bottom: 15px;
 }
 
 #progress {
     width: 95%;
     margin: 0 2.5%;
-    background: #aaa;
-    height: 7.5px;
+    background: #888;
+    height: 5px;
     position: relative;
 }
 
 #buffer {
     display: block;
-    background: orange;
+    background: #bbb;
     height: 100%;
+    width: 0%;
 }
 
 #time-bar {
-    margin-top: -7.5px;
+    margin-top: -5px;
     display: block;
-    background: green;
+    background: orange;
     height: 100%;
     width: 0%;
 }
@@ -76,12 +77,11 @@ button:focus {
     color: white;
 }
 
-
 .para {
     display: block;
     margin: 10px 20px;
-    }
+}
 
 .para p {
     display: inline;
-    }
+}
