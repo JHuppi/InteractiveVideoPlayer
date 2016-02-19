@@ -41,7 +41,7 @@ button:focus {
 
 #buffer {
     display: block;
-    background: #bbb;
+    background: green;
     height: 100%;
     width: 0%;
 }

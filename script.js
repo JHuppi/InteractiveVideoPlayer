@@ -84,6 +84,9 @@ fullScreenButton.addEventListener("click", function() {
 progress.addEventListener('click', function(e) {
     var position = (e.pageX - this.offsetLeft) / this.offsetWidth;
     video.currentTime = position * video.duration;
+    for (var i = 0; i < cap.length; i++) {
+        cap[i].style.color = "black";
+    }
 });
 
 progress.addEventListener("mousedown", function() {
@@ -117,9 +120,10 @@ video.addEventListener('loadedmetadata', function() {
 });
 
 
-video.addEventListener('progress', function() {
-        var currentBuffer = video.buffered.end(0);
-        bufferBar.style.width = Math.floor((video.buffered.end(1-video.buffered.length)/video.duration)*100) + "%";
+video.addEventListener('canplay', function() {
+        var currentBuffer = video.buffered.end(video.buffered.length-1);
+        bufferBar.style.width = currentBuffer/video.duration*100 + "%";
+
 });
 
 video.addEventListener("timeupdate", function() {
