@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
+        <div id="container">
         <div id="video-container">
             <video id="video">
                 <source src="video/video.mp4" type="video/mp4">
@@ -24,6 +25,9 @@
                 <div id="controls">
                     <button type="button" id="play-pause"><img src="icon/play-icon.png" alt="play"></button>
                     <div id="duration">Duration</div>
+                    <div id="volume-total">
+                        <span id="volume-bar"></span>
+                    </div>
                     <button type="button" id="mute-unmute"><img src="icon/volume-on-icon.png" alt="mute unmute"></button>
                     <button type="button" id="full-screen"><img src="icon/fullscreen-icon.png" alt="fullscreen mode"></button>
                 </div>
@@ -83,6 +87,7 @@
             <p id="cap16">
                 A few common residential modems are DSL or...
             </p>
+        </div>
         </div>
         <script src="script.js"></script>
     </body>

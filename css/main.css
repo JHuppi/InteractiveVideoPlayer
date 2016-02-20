@@ -23,6 +23,7 @@ button:focus {
 }
 
 #bar-container {
+    display: block;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -35,19 +36,19 @@ button:focus {
     width: 95%;
     margin: 0 2.5%;
     background: #888;
-    height: 5px;
+    height: 7px;
     position: relative;
 }
 
 #buffer {
     display: block;
-    background: green;
+    background: #bbb;
     height: 100%;
     width: 0%;
 }
 
 #time-bar {
-    margin-top: -5px;
+    margin-top: -7px;
     display: block;
     background: orange;
     height: 100%;
@@ -76,6 +77,17 @@ button:focus {
     margin-right: auto;
     color: white;
 }
+#volume-total {
+    width: 10%;
+    height: 7px;
+    background: #888;
+    position: relative;
+}
+#volume-bar {
+    display: block;
+    height: 100%;
+    background: orange;
+}
 
 .para {
     display: block;
@@ -84,4 +96,11 @@ button:focus {
 
 .para p {
     display: inline;
+}
+
+@media (orientation: landscape) {
+    #container {
+        width: 75%;
+        margin: 0 auto;
+    }
 }

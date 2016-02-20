@@ -1,14 +1,18 @@
 var videoContainer = document.getElementById('video-container');
 var video = document.getElementById('video');
-
-var playButton = document.getElementById("play-pause");
-var duration = document.getElementById("duration");
-var muteButton = document.getElementById("mute-unmute");
-var fullScreenButton = document.getElementById("full-screen");
+var container = document.getElementById('container');
 
 var progress = document.getElementById("progress");
 var bufferBar = document.getElementById('buffer');
 var progressBar = document.getElementById("time-bar");
+
+
+var playButton = document.getElementById("play-pause");
+var duration = document.getElementById("duration");
+var volumeTotal = document.getElementById("volume-total");
+var volumeBar = document.getElementById("volume-bar");
+var muteButton = document.getElementById("mute-unmute");
+var fullScreenButton = document.getElementById("full-screen");
 
 var cap = [document.getElementById("cap1"),
             document.getElementById("cap2"),
@@ -40,17 +44,32 @@ playButton.addEventListener("click", function() {
     }
 });
 
+//Duration Display
+video.addEventListener('loadedmetadata', function() {
+    duration.innerHTML = "00:00 / " + videoDuration();
+});
+
+//Volume Bar Interactivity
+volumeTotal.addEventListener('click', function(e) {
+   var position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
+   video.volume = position / 1;
+   volumeBar.style.width =  (position*100) / 1 + "%";
+});
+
 //Mute-Unmute Button
 muteButton.addEventListener("click", function() {
     if (video.muted === false) {
         video.muted = true;
         muteButton.innerHTML = '<img src="icon/volume-off-icon.png" alt="Unmute">';
+        volumeBar.style.width = "0%";
     } else {
         video.muted = false;
         muteButton.innerHTML = '<img src="icon/volume-on-icon.png" alt="Mute">';
+        volumeBar.style.width = (video.volume*100) / 1 + "%";
     }
 });
 
+//FullScreen Button
 function isFullScreen() {
     return !!(document.fullScreen || 
               document.webkitIsFullScreen || 
@@ -59,7 +78,6 @@ function isFullScreen() {
               document.fullscreenElement);
 }
 
-//FullScreen Button
 fullScreenButton.addEventListener("click", function() { 
     if (isFullScreen()) {
         if (document.exitFullscreen) {
@@ -68,25 +86,35 @@ fullScreenButton.addEventListener("click", function() {
             document.mozCancelFullScreen();
         } else if (document.webkitCancelFullScreen) {
             document.webkitCancelFullScreen();
-        }      
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }     
     } else {
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
+        if (videoContainer.requestFullscreen) {
+            videoContainer.requestFullscreen();
         } else if (video.webkitRequestFullscreen) {
             video.webkitRequestFullscreen();
-        } else if (video.mozRequestFullScreen) {
-            video.mozRequestFullScreen();
+        } else if (videoContainer.mozRequestFullScreen) {
+            videoContainer.mozRequestFullScreen();
+        } else if (videoContainer.msRequestFullscreen) {
+            videoContainer.msRequestFullscreen();
         }
     }
 });
 
 //Progress Bar Interactivity
-progress.addEventListener('click', function(e) {
-    var position = (e.pageX - this.offsetLeft) / this.offsetWidth;
-    video.currentTime = position * video.duration;
+progress.addEventListener("click", function(e) {
+   var position;
+    if (isFullScreen()) {
+        position = (e.pageX - this.offsetLeft) / this.offsetWidth;
+        video.currentTime = position * video.duration;
+    } else {
+        position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
+        video.currentTime = position * video.duration;
+    }
     for (var i = 0; i < cap.length; i++) {
         cap[i].style.color = "black";
-    }
+    } 
 });
 
 progress.addEventListener("mousedown", function() {
@@ -115,15 +143,9 @@ function currentDuration() {
     return currentFormat;
 }
 
-video.addEventListener('loadedmetadata', function() {
-    duration.innerHTML = "00:00 / " + videoDuration();
-});
-
-
 video.addEventListener('canplay', function() {
         var currentBuffer = video.buffered.end(video.buffered.length-1);
-        bufferBar.style.width = currentBuffer/video.duration*100 + "%";
-
+        bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
 });
 
 video.addEventListener("timeupdate", function() {
@@ -146,7 +168,7 @@ video.addEventListener("timeupdate", function() {
             cap[2].style.color = "black";
             cap[3].style.color = "orange";
             break;
-        case "00:14":
+        case "00:13":
             cap[3].style.color = "black";
             cap[4].style.color = "orange";
             break;
@@ -198,3 +220,73 @@ video.addEventListener("timeupdate", function() {
     }
 });
 
+function tranScript(time) {
+    for (var i = 0; i < cap.length; i++) {
+        cap[i].style.color = "black";
+    }
+    video.currentTime = time;
+}
+
+cap[0].addEventListener('click', function() {
+    tranScript(0);
+});
+
+cap[1].addEventListener('click', function() {
+    tranScript(4);
+});
+
+cap[2].addEventListener('click', function() {
+    tranScript(8);
+});
+
+cap[3].addEventListener('click', function() {
+    tranScript(11);
+});
+
+cap[4].addEventListener('click', function() {
+    tranScript(13);
+});
+
+cap[5].addEventListener('click', function() {
+    tranScript(18);
+});
+
+cap[6].addEventListener('click', function() {
+    tranScript(22);
+});
+
+cap[7].addEventListener('click', function() {
+    tranScript(26);
+});
+
+cap[8].addEventListener('click', function() {
+    tranScript(32);
+});
+
+cap[9].addEventListener('click', function() {
+    tranScript(35);
+});
+
+cap[10].addEventListener('click', function() {
+    tranScript(40);
+});
+
+cap[11].addEventListener('click', function() {
+    tranScript(42);
+});
+
+cap[12].addEventListener('click', function() {
+    tranScript(46);
+});
+
+cap[13].addEventListener('click', function() {
+    tranScript(49);
+});
+
+cap[14].addEventListener('click', function() {
+    tranScript(54);
+});
+
+cap[15].addEventListener('click', function() {
+    tranScript(58);
+});
