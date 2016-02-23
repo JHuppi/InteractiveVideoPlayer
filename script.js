@@ -61,9 +61,15 @@ video.addEventListener('loadedmetadata', function() {
 
 //Volume Bar Interactivity
 volumeTotal.addEventListener('click', function(e) {
-   var position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
+   var position;
    video.volume = position / 1;
-   volumeBar.style.width =  (position*100) / 1 + "%";
+   if (isFullScreen()) {
+        position = (e.pageX - this.offsetLeft) / this.offsetWidth;
+        volumeBar.style.width =  (position*100) / 1 + "%";
+   } else {
+        position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
+        volumeBar.style.width =  (position*100) / 1 + "%";
+   }
 });
 
 //Mute-Unmute Button
