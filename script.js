@@ -55,10 +55,10 @@ video.addEventListener('loadedmetadata', function() {
     track.srclang = "en";
     track.src = "video/captions.vtt";
     video.appendChild(track);
-    var videoCaptionList = video.textTracks[0];
-    for(var i = 0; i < videoCaptionList; i++) {
-        testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
-    }
+    //var videoCaptionList = video.textTracks[0];
+    //for(var i = 0; i < videoCaptionList; i++) {
+    //    testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
+    //}
 });
 
 //Volume Bar Interactivity
