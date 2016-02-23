@@ -54,7 +54,10 @@ video.addEventListener('loadedmetadata', function() {
     track.label = "English";
     track.srclang = "en";
     track.src = "video/captions.vtt";
-    track.mode = "hidden";
+    track.addEventListener("load", function(){
+        track.mode = "showing";
+        video.textTracks[0].mode = "showing";
+    });
     video.appendChild(track);
     //var videoCaptionList = video.textTracks[0];
     //for(var i = 0; i < videoCaptionList; i++) {
