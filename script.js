@@ -152,10 +152,11 @@ function currentDuration() {
                        + (currentVideoSec < 10 ? "0" : "") + currentVideoSec;
     return currentFormat;
 }
-
-video.addEventListener('canplay', function() {
-        var currentBuffer = video.buffered.end(video.buffered.length-1);
-        bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
+video.addEventListener('progress', function() {
+    video.addEventListener('canplay', function() {
+            var currentBuffer = video.buffered.end(video.buffered.length-1);
+            bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
+    });
 });
 
 video.addEventListener("timeupdate", function() {
