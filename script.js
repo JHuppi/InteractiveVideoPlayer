@@ -62,12 +62,13 @@ video.addEventListener('loadedmetadata', function() {
 //Volume Bar Interactivity
 volumeTotal.addEventListener('click', function(e) {
    var position;
-   video.volume = position / 1;
    if (isFullScreen()) {
         position = (e.pageX - this.offsetLeft) / this.offsetWidth;
+        video.volume = position / 1;
         volumeBar.style.width =  (position*100) / 1 + "%";
    } else {
         position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
+        video.volume = position / 1;
         volumeBar.style.width =  (position*100) / 1 + "%";
    }
 });
