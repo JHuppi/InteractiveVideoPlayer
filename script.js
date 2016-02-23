@@ -160,7 +160,7 @@ function currentDuration() {
     return currentFormat;
 }
 video.addEventListener('progress', function() {
-    if (video.readyState === "loading") {
+    if (video.readyState === 4) {
         var currentBuffer = video.buffered.end(0);
         bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
     }
