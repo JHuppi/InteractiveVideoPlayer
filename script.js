@@ -160,8 +160,10 @@ function currentDuration() {
     return currentFormat;
 }
 video.addEventListener('progress', function() {
+    if (video.readyState === "loading") {
         var currentBuffer = video.buffered.end(0);
         bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
+    }
 });
 
 video.addEventListener("timeupdate", function() {
