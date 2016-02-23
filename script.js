@@ -14,6 +14,7 @@ var volumeBar = document.getElementById("volume-bar");
 var muteButton = document.getElementById("mute-unmute");
 var ccButton = document.getElementById("captions");
 var fullScreenButton = document.getElementById("full-screen");
+var testPara = document.getElementById("test-para");
 
 var cap = [document.getElementById("cap1"),
             document.getElementById("cap2"),
@@ -45,7 +46,7 @@ playButton.addEventListener("click", function() {
     }
 });
 
-//Duration Display
+//Duration Display and Transcript Load
 video.addEventListener('loadedmetadata', function() {
     duration.innerHTML = "00:00 / " + videoDuration();
     var track = document.createElement("track");
@@ -54,6 +55,10 @@ video.addEventListener('loadedmetadata', function() {
     track.srclang = "en";
     track.src = "video/captions.vtt";
     video.appendChild(track);
+    
+    for(var i = 0; i < video.textTrack[0].length; i++) {
+        testPara.innerHTML += (video.textTrack[0].cues[i].getCueAsHTML() + "<br/>");
+    }
 });
 
 //Volume Bar Interactivity
@@ -87,11 +92,11 @@ var captionStatus;
 //Captions Button
 ccButton.addEventListener("click", function() {
     if (captionStatus) {
-        ccButton.style.width = "#888";
+        ccButton.style.color = "#888";
         video.textTracks[0].mode = "hidden";
         captionStatus = false;
     } else {
-        ccButton.style.width = "white";
+        ccButton.style.color = "white";
         this.mode = "showing";
         video.textTracks[0].mode = "showing";
         captionStatus = true;
