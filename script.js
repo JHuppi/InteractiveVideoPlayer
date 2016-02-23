@@ -55,9 +55,9 @@ video.addEventListener('loadedmetadata', function() {
     track.srclang = "en";
     track.src = "video/captions.vtt";
     video.appendChild(track);
-    
-    for(var i = 0; i < video.textTracks[0].length; i++) {
-        testPara.innerHTML += (video.textTracks[0].cues[i].getCueAsHTML() + "<br/>");
+    var videoCaptionList = video.textTracks[0];
+    for(var i = 0; i < videoCaptionList; i++) {
+        testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
     }
 });
 
