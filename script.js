@@ -83,10 +83,19 @@ muteButton.addEventListener("click", function() {
     }
 });
 
+var captionStatus;
 //Captions Button
 ccButton.addEventListener("click", function() {
-    this.mode = "showing";
-    video.textTracks[0].mode = "showing";
+    if (captionStatus) {
+        ccButton.style.width = "#888";
+        video.textTracks[0].mode = "hidden";
+        captionStatus = false;
+    } else {
+        ccButton.style.width = "white";
+        this.mode = "showing";
+        video.textTracks[0].mode = "showing";
+        captionStatus = true;
+    }
 });
 
 //FullScreen Button
