@@ -48,6 +48,12 @@ playButton.addEventListener("click", function() {
 //Duration Display
 video.addEventListener('loadedmetadata', function() {
     duration.innerHTML = "00:00 / " + videoDuration();
+    var track = document.createElement("track");
+    track.kind = "subtitles";
+    track.label = "English";
+    track.srclang = "en";
+    track.src = "video/captions.vtt";
+    video.appendChild(track);
 });
 
 //Volume Bar Interactivity
@@ -79,16 +85,8 @@ muteButton.addEventListener("click", function() {
 
 //Captions Button
 ccButton.addEventListener("click", function() {
-    var track = document.createElement("track");
-    track.kind = "subtitles";
-    track.label = "English";
-    track.srclang = "en";
-    track.src = "video/captions.vtt";
-    track.addEventListener("load", function() {
-        this.mode = "showing";
-        video.textTracks[0].mode = "showing";
-    });
-    video.appendChild(track);
+    this.mode = "showing";
+    video.textTracks[0].mode = "showing";
 });
 
 //FullScreen Button
