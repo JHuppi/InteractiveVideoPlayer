@@ -153,10 +153,8 @@ function currentDuration() {
     return currentFormat;
 }
 video.addEventListener('progress', function() {
-    if(video.canplay) {
-            var currentBuffer = video.buffered.end(video.buffered.length-1);
-            bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
-    };
+        var currentBuffer = video.buffered.end(video.buffered.length-1);
+        bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
 });
 
 video.addEventListener("timeupdate", function() {
