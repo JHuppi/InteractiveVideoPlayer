@@ -37,14 +37,12 @@ var cap = [document.getElementById("cap1"),
 video.controls = false;
 //Load Transcript
 document.addEventListener("DOMContentLoaded", function() {
-    track.addEventListener("load", function(){
-        this.mode = "showing";
+        track.mode = "showing";
         video.textTracks[0].mode = "showing";
         var videoCaptionList = video.textTracks[0];
         for(var i = 0; i < videoCaptionList; i++) {
             testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
         }
-    });
 });
 
 //Play-Pause Button
