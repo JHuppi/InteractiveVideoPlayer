@@ -41,12 +41,14 @@ document.addEventListener("DOMContentLoaded", function() {
         video.textTracks[0].mode = "hidden";
         
 });
+var videoCaptionList
 track.addEventListener("load", function(){
-    var videoCaptionList = video.textTracks[0];
+    videoCaptionList = video.textTracks[0].cues;
     for (var i = 0; i < videoCaptionList.cues.length; i++) {
-        testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
+        testPara.innerHTML += (videoCaptionList.getCueAsHTML() + "<br/>");
     }
 });
+
 //Play-Pause Button
 playButton.addEventListener("click", function() {
     if (video.paused) {
@@ -61,8 +63,6 @@ playButton.addEventListener("click", function() {
 //Duration Display and Transcript Load
 video.addEventListener('loadedmetadata', function() {
     duration.innerHTML = "00:00 / " + videoDuration();
-
-    
 });
 
 //Volume Bar Interactivity
@@ -187,10 +187,19 @@ video.addEventListener('progress', function() {
     }
 });
 
+function updateTranscript(i) {
+    if (video.currentTime === videoCaptionList[i].startTime) {
+        videoCaptionList.style.color = "orange";
+    }
+}
+
 video.addEventListener("timeupdate", function() {
     progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
     duration.innerHTML = currentDuration() + " / " 
                        + videoDuration();
+    for(var i; i < videoCaptionList.length; i++) {                   
+    updateTranscript(i);
+    }
     switch(currentDuration()) {
         case "00:00": 
             cap[0].style.color = "orange";
