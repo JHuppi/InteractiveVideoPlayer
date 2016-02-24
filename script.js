@@ -1,6 +1,7 @@
 var videoContainer = document.getElementById('video-container');
 var video = document.getElementById('video');
 var container = document.getElementById('container');
+var track = document.getElementById("entrack");
 
 var progress = document.getElementById("progress");
 var bufferBar = document.getElementById('buffer');
@@ -34,6 +35,15 @@ var cap = [document.getElementById("cap1"),
             document.getElementById("cap16")];
 
 video.controls = false;
+//Load Transcript
+document.addEventListener("DOMContentLoaded", function() {
+    track.addEventListener("load", function(){
+        var videoCaptionList = video.textTracks[0];
+        for(var i = 0; i < videoCaptionList; i++) {
+            testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
+        }
+    });
+});
 
 //Play-Pause Button
 playButton.addEventListener("click", function() {
@@ -49,20 +59,8 @@ playButton.addEventListener("click", function() {
 //Duration Display and Transcript Load
 video.addEventListener('loadedmetadata', function() {
     duration.innerHTML = "00:00 / " + videoDuration();
-    var track = document.createElement("track");
-    track.kind = "subtitles";
-    track.label = "English";
-    track.srclang = "en";
-    track.src = "video/captions.vtt";
-    track.addEventListener("load", function(){
-        track.mode = "showing";
-        video.textTracks[0].mode = "showing";
-    });
-    video.appendChild(track);
-    //var videoCaptionList = video.textTracks[0];
-    //for(var i = 0; i < videoCaptionList; i++) {
-    //    testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
-    //}
+
+    
 });
 
 //Volume Bar Interactivity
