@@ -45,7 +45,7 @@ var videoCaptionList
 track.addEventListener("load", function(){
     videoCaptionList = video.textTracks[0].cues;
     for (var i = 0; i < videoCaptionList.length; i++) {
-        testPara.innerHTML += (videoCaptionList[i].getCueAsHTML());
+        testPara.appendChild = (videoCaptionList[i].getCueAsHTML());
     }
 });
 
@@ -189,7 +189,7 @@ video.addEventListener('progress', function() {
 
 function updateTranscript(i) {
     if (video.currentTime === videoCaptionList[i].startTime) {
-        videoCaptionList.style.color = "orange";
+        videoCaptionList[i].style.color = "orange";
     }
 }
 
@@ -198,7 +198,7 @@ video.addEventListener("timeupdate", function() {
     duration.innerHTML = currentDuration() + " / " 
                        + videoDuration();
     for(var i; i < videoCaptionList.length; i++) {                   
-    updateTranscript(i);
+        updateTranscript(i);
     }
     switch(currentDuration()) {
         case "00:00": 
