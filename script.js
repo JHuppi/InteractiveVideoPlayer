@@ -193,7 +193,7 @@ video.addEventListener('progress', function() {
 function updateTranscript(i) {
     var para = "para" + i;
     if (video.currentTime === videoCaptionList[i].startTime) {
-        para.style.color = "orange";
+        document.getElementById(para).style.color = "orange";
     }
 }
 
