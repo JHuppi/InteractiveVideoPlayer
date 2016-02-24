@@ -37,8 +37,8 @@ var cap = [document.getElementById("cap1"),
 video.controls = false;
 //Load Transcript
 document.addEventListener("DOMContentLoaded", function() {
-        track.mode = "showing";
-        video.textTracks[0].mode = "showing";
+        track.mode = "hidden";
+        video.textTracks[0].mode = "hidden";
         
 });
 track.addEventListener("load", function(){
