@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 track.addEventListener("load", function(){
     var videoCaptionList = video.textTracks[0];
     for (var i = 0; i < videoCaptionList.cues.length; i++) {
-        testPara.innerHTML += (videoCaptionList.cues[i].text + "<br/>");
+        testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
     }
 });
 //Play-Pause Button
