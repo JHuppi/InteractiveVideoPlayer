@@ -45,7 +45,7 @@ var videoCaptionList
 track.addEventListener("load", function(){
     videoCaptionList = video.textTracks[0].cues;
     for (var i = 0; i < videoCaptionList.length; i++) {
-        testPara.innerHTML = videoCaptionList[i].getCueAsHTML();
+        testPara.innerHTML += videoCaptionList.getCueAsHTML();
     }
 });
 
