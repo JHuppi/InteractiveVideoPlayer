@@ -38,6 +38,8 @@ video.controls = false;
 //Load Transcript
 document.addEventListener("DOMContentLoaded", function() {
     track.addEventListener("load", function(){
+        this.mode = "showing";
+        video.textTracks[0] = "showing";
         var videoCaptionList = video.textTracks[0];
         for(var i = 0; i < videoCaptionList; i++) {
             testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
