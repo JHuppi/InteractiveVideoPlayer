@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 track.addEventListener("load", function(){
     var videoCaptionList = video.textTracks[0];
-    for (var i = 0; i < videoCaptionList; i++) {
+    for (var i = 0; i < videoCaptionList.length; i++) {
         testPara.innerHTML += (videoCaptionList.cues[i].text + "<br/>");
     }
 });
