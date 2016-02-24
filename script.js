@@ -191,8 +191,9 @@ video.addEventListener('progress', function() {
 });
 
 function updateTranscript(i) {
+    var para = "para" + i;
     if (video.currentTime === videoCaptionList[i].startTime) {
-        videoCaptionList[i].style.color = "orange";
+        para.style.color = "orange";
     }
 }
 
