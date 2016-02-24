@@ -39,7 +39,7 @@ video.controls = false;
 document.addEventListener("DOMContentLoaded", function() {
     track.addEventListener("load", function(){
         this.mode = "showing";
-        video.textTracks[0] = "showing";
+        video.textTracks[0].mode = "showing";
         var videoCaptionList = video.textTracks[0];
         for(var i = 0; i < videoCaptionList; i++) {
             testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
