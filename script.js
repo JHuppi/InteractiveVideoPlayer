@@ -39,12 +39,14 @@ video.controls = false;
 document.addEventListener("DOMContentLoaded", function() {
         track.mode = "showing";
         video.textTracks[0].mode = "showing";
-        var videoCaptionList = video.textTracks[0];
-        for(var i = 0; i < videoCaptionList; i++) {
-            testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
-        }
+        
 });
-
+track.addEventListener("load", function(){
+    var videoCaptionList = video.textTracks[0];
+    for (var i = 0; i < videoCaptionList; i++) {
+        testPara.innerHTML += (videoCaptionList.cues[i].getCueAsHTML() + "<br/>");
+    }
+});
 //Play-Pause Button
 playButton.addEventListener("click", function() {
     if (video.paused) {
