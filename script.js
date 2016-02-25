@@ -207,73 +207,12 @@ track.addEventListener("cuechange", function(){
     }
 });
 
-function tranScript(time) {
-    for (var i = 0; i < cap.length; i++) {
-        cap[i].style.color = "black";
-    }
-    video.currentTime = time;
+var paraGraph = document.getElementsByTagName("p");
+for (var i; i < paraGraph.length; i++) {
+    paraGraph[i].addEventListener("click", function(){
+        var paraId = parseInt(paraGraph[i].id);
+        var cueStart = videoCaptionList[paraId].startTime;
+        video.currentTime = cueStart;
+        
+    });
 }
-
-cap[0].addEventListener('click', function() {
-    tranScript(0);
-});
-
-cap[1].addEventListener('click', function() {
-    tranScript(4);
-});
-
-cap[2].addEventListener('click', function() {
-    tranScript(8);
-});
-
-cap[3].addEventListener('click', function() {
-    tranScript(11);
-});
-
-cap[4].addEventListener('click', function() {
-    tranScript(13);
-});
-
-cap[5].addEventListener('click', function() {
-    tranScript(18);
-});
-
-cap[6].addEventListener('click', function() {
-    tranScript(22);
-});
-
-cap[7].addEventListener('click', function() {
-    tranScript(26);
-});
-
-cap[8].addEventListener('click', function() {
-    tranScript(32);
-});
-
-cap[9].addEventListener('click', function() {
-    tranScript(35);
-});
-
-cap[10].addEventListener('click', function() {
-    tranScript(40);
-});
-
-cap[11].addEventListener('click', function() {
-    tranScript(42);
-});
-
-cap[12].addEventListener('click', function() {
-    tranScript(46);
-});
-
-cap[13].addEventListener('click', function() {
-    tranScript(49);
-});
-
-cap[14].addEventListener('click', function() {
-    tranScript(54);
-});
-
-cap[15].addEventListener('click', function() {
-    tranScript(58);
-});
