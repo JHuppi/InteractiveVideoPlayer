@@ -195,14 +195,13 @@ track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
     var newId = currentCue[0].id;
     var oldId = (currentCue[0].id - 1);
-    if (oldId < 0) {
-        oldId = 0;
-    }
     var newPara = "para" + newId;
     var oldPara = "para" + oldId;
     if(currentCue.length > 0) {
         document.getElementById(newPara).style.color = "orange";
-        document.getElementById(oldPara).style.color = "black";
+        if (oldId > 0) {
+            document.getElementById(oldPara).style.color = "black";
+        }
     }
 });
 
