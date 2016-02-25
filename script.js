@@ -200,7 +200,7 @@ function updateTranscript(i) {
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
     if(video.currentTime === currentCue[0].startTime) {
-        document.getElementById("para0").style.color = "orange";
+        return true;
     }
 });
 
