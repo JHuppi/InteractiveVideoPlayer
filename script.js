@@ -7,7 +7,6 @@ var progress = document.getElementById("progress");
 var bufferBar = document.getElementById('buffer');
 var progressBar = document.getElementById("time-bar");
 
-
 var playButton = document.getElementById("play-pause");
 var duration = document.getElementById("duration");
 var volumeTotal = document.getElementById("volume-total");
@@ -35,11 +34,11 @@ var cap = [document.getElementById("cap1"),
             document.getElementById("cap16")];
 
 video.controls = false;
+
 //Load Transcript
 document.addEventListener("DOMContentLoaded", function() {
         track.mode = "hidden";
         video.textTracks[0].mode = "hidden";
-        
 });
 var videoCaptionList
 track.addEventListener("load", function(){
@@ -63,7 +62,7 @@ playButton.addEventListener("click", function() {
     }
 });
 
-//Duration Display and Transcript Load
+//Duration Display
 video.addEventListener('loadedmetadata', function() {
     duration.innerHTML = "00:00 / " + videoDuration();
 });
@@ -153,8 +152,9 @@ progress.addEventListener("click", function(e) {
         position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
         video.currentTime = position * video.duration;
     }
-    for (var i = 0; i < cap.length; i++) {
-        cap[i].style.color = "black";
+    for (var i = 1; i <= videoCaptionList.length; i++) {
+        var para = "para" + 1;
+        document.getElementById(para).style.color = "black";
     } 
 });
 
@@ -190,7 +190,13 @@ video.addEventListener('progress', function() {
     }
 });
 
+video.addEventListener("timeupdate", function() {
+    progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
+    duration.innerHTML = currentDuration() + " / " 
+                       + videoDuration();
+});
 
+//Update Transcript
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
     if(currentCue.length > 0) {
@@ -205,11 +211,6 @@ track.addEventListener("cuechange", function(){
     }
 });
 
-video.addEventListener("timeupdate", function() {
-    progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
-    duration.innerHTML = currentDuration() + " / " 
-                       + videoDuration();
-});
 
 function tranScript(time) {
     for (var i = 0; i < cap.length; i++) {
