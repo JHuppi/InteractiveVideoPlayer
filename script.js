@@ -199,8 +199,8 @@ function updateTranscript(i) {
 
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
-    if(currentCue[0].startTime == video.currentTime) {
-        console.log("It is returning true");
+    if(currentCue.length > 0) {
+        document.getElementById("para0").style.color = "orange";
     }
 });
 
