@@ -206,7 +206,7 @@ track.addEventListener("cuechange", function(){
         //var oldPara = "para" + oldId;
         document.getElementById(newPara).style.color = "orange";
         for (var i = 1; i <= videoCaptionList.length; i++) {
-            if (videoCaptionList[i].id != newId) {
+            if (videoCaptionList[i-1].id != newId) {
                 document.getElementById("para"+i).style.color = "black";
             }
         }
