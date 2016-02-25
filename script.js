@@ -197,6 +197,13 @@ function updateTranscript(i) {
     }
 }
 
+track.addEventListener("cuechange", function(){
+    var currentCue = track.track.activeCues;
+    if(video.currentTime === currentCue.start) {
+        document.getElementById("para0").style.color = "orange";
+    }
+});
+
 video.addEventListener("timeupdate", function() {
     progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
     duration.innerHTML = currentDuration() + " / " 
