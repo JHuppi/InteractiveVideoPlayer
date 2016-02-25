@@ -208,6 +208,7 @@ track.addEventListener("cuechange", function(){
 });
 
 var paraGraph = document.getElementsByTagName("p");
+testPara.addEventListener("click", function(){
 for (var i; i < paraGraph.length; i++) {
     paraGraph[i].addEventListener("click", function(){
         var paraId = parseInt(paraGraph[i].id);
@@ -216,3 +217,4 @@ for (var i; i < paraGraph.length; i++) {
         
     });
 }
+});
