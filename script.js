@@ -199,7 +199,7 @@ function updateTranscript(i) {
 
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
-    if(video.currentTime === currentCue[0].startTime) {
+    if(currentCue[0].startTime == video.currentTime) {
         return true;
     }
 });
