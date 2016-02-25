@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
 var videoCaptionList
 track.addEventListener("load", function(){
     videoCaptionList = video.textTracks[0].cues;
-    for (var i = 1; i <= videoCaptionList.length; i++) {
+    for (var i = 0; i < videoCaptionList.length; i++) {
         var newPara = document.createElement("p");
-        newPara.id = "para" + i;
+        newPara.id = "para" + (i+1);
         newPara.innerHTML = videoCaptionList[i].text;
         testPara.appendChild(newPara);
     }
