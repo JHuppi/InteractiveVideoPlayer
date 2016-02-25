@@ -190,17 +190,16 @@ video.addEventListener('progress', function() {
     }
 });
 
-function updateTranscript(i) {
-    var para = "para" + i;
-    if (video.currentTime === videoCaptionList[i].startTime) {
-        document.getElementById(para).style.color = "orange";
-    }
-}
 
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
-    var newPara = "para" + currentCue[0].id;
-    var oldPara = "para" + (currentCue[0].id - 1);
+    var newId = currentCue[0].id;
+    var oldId = (currentCue[0].id - 1);
+    if (oldId < 0) {
+        oldId = 0;
+    }
+    var newPara = "para" + newId;
+    var oldPara = "para" + oldId;
     if(currentCue.length > 0) {
         document.getElementById(newPara).style.color = "orange";
         document.getElementById(oldPara).style.color = "black";
@@ -211,75 +210,6 @@ video.addEventListener("timeupdate", function() {
     progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
     duration.innerHTML = currentDuration() + " / " 
                        + videoDuration();
-    for(var i; i < videoCaptionList.length; i++) {                   
-        updateTranscript(i);
-    }
-    switch(currentDuration()) {
-        case "00:00": 
-            cap[0].style.color = "orange";
-            break;
-        case "00:04":
-            cap[0].style.color = "black";
-            cap[1].style.color = "orange";
-            break;
-        case "00:08":
-            cap[1].style.color = "black";
-            cap[2].style.color = "orange";
-            break;
-        case "00:11":
-            cap[2].style.color = "black";
-            cap[3].style.color = "orange";
-            break;
-        case "00:13":
-            cap[3].style.color = "black";
-            cap[4].style.color = "orange";
-            break;
-        case "00:18":
-            cap[4].style.color = "black";
-            cap[5].style.color = "orange";
-            break;
-        case "00:22":
-            cap[5].style.color = "black";
-            cap[6].style.color = "orange";
-            break;
-        case "00:26":
-            cap[6].style.color = "black";
-            cap[7].style.color = "orange";
-            break;
-        case "00:32":
-            cap[7].style.color = "black";
-            cap[8].style.color = "orange";
-            break;
-        case "00:35":
-            cap[8].style.color = "black";
-            cap[9].style.color = "orange";
-            break;
-        case "00:40":
-            cap[9].style.color = "black";
-            cap[10].style.color = "orange";
-            break;
-        case "00:42":
-            cap[10].style.color = "black";
-            cap[11].style.color = "orange";
-            break;
-        case "00:46":
-            cap[11].style.color = "black";
-            cap[12].style.color = "orange";
-            break;
-        case "00:49":
-            cap[12].style.color = "black";
-            cap[13].style.color = "orange";
-            break;
-        case "00:54":
-            cap[13].style.color = "black";
-            cap[14].style.color = "orange";
-            break;
-        case "00:58":
-            cap[14].style.color = "black";
-            cap[15].style.color = "orange";
-            break;
-        default: cap[15].style.color = "black";
-    }
 });
 
 function tranScript(time) {
