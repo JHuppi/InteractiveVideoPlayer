@@ -45,7 +45,7 @@ track.addEventListener("load", function(){
     videoCaptionList = video.textTracks[0].cues;
     for (var i = 0; i < videoCaptionList.length; i++) {
         var newPara = document.createElement("p");
-        newPara.id = "para" + (i+1);
+        newPara.id = "" + (i+1);
         newPara.innerHTML = videoCaptionList[i].text;
         testPara.appendChild(newPara);
     }
@@ -152,10 +152,6 @@ progress.addEventListener("click", function(e) {
         position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
         video.currentTime = position * video.duration;
     }
-    /*for (var i = 1; i <= videoCaptionList.length; i++) {
-        var para = "para" + 1;
-        document.getElementById(para).style.color = "black";
-    }*/ 
 });
 
 progress.addEventListener("mousedown", function() {
@@ -201,21 +197,15 @@ track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
     if(currentCue.length > 0) {
         var newId = currentCue[0].id;
-        //var oldId = (currentCue[0].id - 1);
-        var newPara = "para" + newId;
-        //var oldPara = "para" + oldId;
+        var newPara = "" + newId;
         document.getElementById(newPara).style.color = "orange";
         for (var i = 1; i <= videoCaptionList.length; i++) {
             if (videoCaptionList[i-1].id != newId) {
-                document.getElementById("para"+i).style.color = "black";
+                document.getElementById(""+i).style.color = "black";
             }
         }
-        /*if (oldId > 0) {
-            document.getElementById(oldPara).style.color = "black";
-        }*/
     }
 });
-
 
 function tranScript(time) {
     for (var i = 0; i < cap.length; i++) {
