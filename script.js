@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 var videoCaptionList
 track.addEventListener("load", function(){
     videoCaptionList = video.textTracks[0].cues;
-    for (var i = 0; i < videoCaptionList.length; i++) {
+    for (var i = 1; i <= videoCaptionList.length; i++) {
         var newPara = document.createElement("p");
         newPara.id = "para" + i;
         newPara.innerHTML = videoCaptionList[i].text;
@@ -199,8 +199,11 @@ function updateTranscript(i) {
 
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
+    var newPara = "para" + currentCue[0].id;
+    var oldPara = "para" + (currentCue[0].id - 1);
     if(currentCue.length > 0) {
-        document.getElementById("para0").style.color = "orange";
+        document.getElementById(newPara).style.color = "orange";
+        document.getElementById(oldPara).style.color = "black";
     }
 });
 
