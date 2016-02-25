@@ -152,10 +152,10 @@ progress.addEventListener("click", function(e) {
         position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
         video.currentTime = position * video.duration;
     }
-    for (var i = 1; i <= videoCaptionList.length; i++) {
+    /*for (var i = 1; i <= videoCaptionList.length; i++) {
         var para = "para" + 1;
         document.getElementById(para).style.color = "black";
-    } 
+    }*/ 
 });
 
 progress.addEventListener("mousedown", function() {
@@ -201,13 +201,18 @@ track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
     if(currentCue.length > 0) {
         var newId = currentCue[0].id;
-        var oldId = (currentCue[0].id - 1);
+        //var oldId = (currentCue[0].id - 1);
         var newPara = "para" + newId;
-        var oldPara = "para" + oldId;
+        //var oldPara = "para" + oldId;
         document.getElementById(newPara).style.color = "orange";
-        if (oldId > 0) {
-            document.getElementById(oldPara).style.color = "black";
+        for (var i = 1; i <= videoCaptionList.length; i++) {
+            if (videoCaptionList[i].id != newId) {
+                document.getElementById("para"+i).style.color = "black";
+            }
         }
+        /*if (oldId > 0) {
+            document.getElementById(oldPara).style.color = "black";
+        }*/
     }
 });
 
