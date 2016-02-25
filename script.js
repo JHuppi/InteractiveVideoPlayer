@@ -193,11 +193,11 @@ video.addEventListener('progress', function() {
 
 track.addEventListener("cuechange", function(){
     var currentCue = track.track.activeCues;
-    var newId = currentCue[0].id;
-    var oldId = (currentCue[0].id - 1);
-    var newPara = "para" + newId;
-    var oldPara = "para" + oldId;
     if(currentCue.length > 0) {
+        var newId = currentCue[0].id;
+        var oldId = (currentCue[0].id - 1);
+        var newPara = "para" + newId;
+        var oldPara = "para" + oldId;
         document.getElementById(newPara).style.color = "orange";
         if (oldId > 0) {
             document.getElementById(oldPara).style.color = "black";
