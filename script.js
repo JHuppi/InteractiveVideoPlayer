@@ -14,24 +14,7 @@ var volumeBar = document.getElementById("volume-bar");
 var muteButton = document.getElementById("mute-unmute");
 var ccButton = document.getElementById("captions");
 var fullScreenButton = document.getElementById("full-screen");
-var testPara = document.getElementById("test-para");
-
-var cap = [document.getElementById("cap1"),
-            document.getElementById("cap2"),
-            document.getElementById("cap3"),
-            document.getElementById("cap4"),
-            document.getElementById("cap5"),
-            document.getElementById("cap6"),
-            document.getElementById("cap7"),
-            document.getElementById("cap8"),
-            document.getElementById("cap9"),
-            document.getElementById("cap10"),
-            document.getElementById("cap11"),
-            document.getElementById("cap12"),
-            document.getElementById("cap13"),
-            document.getElementById("cap14"),
-            document.getElementById("cap15"),
-            document.getElementById("cap16")];
+var tranScript = document.getElementById("tran-script");
 
 video.controls = false;
 
@@ -47,7 +30,7 @@ track.addEventListener("load", function(){
         var newPara = document.createElement("p");
         newPara.id = "" + (i+1);
         newPara.innerHTML = videoCaptionList[i].text;
-        testPara.appendChild(newPara);
+        tranScript.appendChild(newPara);
     }
 });
 
@@ -209,7 +192,7 @@ track.addEventListener("cuechange", function(){
 
 var paraGraph = document.getElementsByTagName("p");
 
-testPara.addEventListener("click", doSomething);
+tranScript.addEventListener("click", doSomething);
 
 function doSomething(e) {
     if (e.target !== e.currentTarget) {

@@ -94,12 +94,12 @@ button:focus {
     color: #888;
 }
 
-.para {
+#tran-script {
     display: block;
     margin: 10px 20px;
 }
 
-.para p {
+#tran-script p {
     display: inline;
 }
 
