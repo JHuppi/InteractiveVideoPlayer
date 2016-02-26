@@ -212,9 +212,12 @@ var paraGraph = document.getElementsByTagName("p");
 testPara.addEventListener("click", doSomething);
 
 function doSomething(e) {
-    var paraId = parseInt(paraGraph[e].id);
-    var cueStart = videoCaptionList[paraId].startTime;
-    video.currentTime = cueStart;
-    console.log("The click is working");
+    if (e.target !== e.currentTarget) {
+        var paraId = parseInt(paraGraph[e].id);
+        var cueStart = videoCaptionList[paraId].startTime;
+        video.currentTime = cueStart;
+        console.log("The click is working");
+    }
+    e.stopPropagation();
 }
 
