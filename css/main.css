@@ -103,6 +103,7 @@ button:focus {
     display: inline;
     margin-right: 1em;
     line-height: 1.5em;
+    cursor: pointer;
 }
 
 @media (orientation: landscape) {
