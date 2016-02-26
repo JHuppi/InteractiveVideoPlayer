@@ -214,7 +214,7 @@ testPara.addEventListener("click", doSomething);
 function doSomething(e) {
     if (e.target !== e.currentTarget) {
         var paraId = parseInt(e.target.id);
-        var cueStart = videoCaptionList[paraId].startTime;
+        var cueStart = videoCaptionList[paraId-1].startTime;
         video.currentTime = cueStart;
         console.log("The click is working");
     }
