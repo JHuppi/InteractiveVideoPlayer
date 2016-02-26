@@ -100,7 +100,7 @@ button:focus {
 }
 
 #tran-script p {
-    display: inline;
+    display: inline-block;
 }
 
 @media (orientation: landscape) {
