@@ -208,13 +208,15 @@ track.addEventListener("cuechange", function(){
 });
 
 var paraGraph = document.getElementsByTagName("p");
-testPara.addEventListener("click", function(){
+
 for (var i; i < paraGraph.length; i++) {
-    paraGraph[i].addEventListener("click", function(){
+    paraGraph[i].addEventListener("click", bindClick(i));
+}
+
+function bindClick(i) {
+    return function(){
         var paraId = parseInt(paraGraph[i].id);
         var cueStart = videoCaptionList[paraId].startTime;
-        video.currentTime = cueStart;
-        
-    });
+        video.currentTime = cueStart;       
+    }
 }
-});
