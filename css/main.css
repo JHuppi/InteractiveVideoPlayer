@@ -101,7 +101,7 @@ button:focus {
 
 #tran-script p {
     display: inline;
-    margin-right: 1em;
+    margin-right: 0.5em;
     line-height: 1.5em;
     cursor: pointer;
 }
