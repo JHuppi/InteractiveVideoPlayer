@@ -10,10 +10,10 @@
     <body>
         <div id="container">
         <div id="video-container">
-            <video id="video">
+            <video id="video" preload="auto">
                 <source src="video/video.mp4" type="video/mp4">
                 <source src="video/video.ogg" type="video/ogg">
-                <track kind="subtitles" src="video/captions.vtt" srclang="en" label="English">
+                <track id="entrack" label="English" kind="subtitles" src="video/captions.vtt" srclang="en">
             </video>
             <div id="bar-container">
                 <div id="bar">
@@ -29,65 +29,12 @@
                         <span id="volume-bar"></span>
                     </div>
                     <button type="button" id="mute-unmute"><img src="icon/volume-on-icon.png" alt="mute unmute"></button>
+                    <button type="button" id="captions">CC</button>
                     <button type="button" id="full-screen"><img src="icon/fullscreen-icon.png" alt="fullscreen mode"></button>
                 </div>
-            </div>
-            
+            </div>  
         </div>    
-        <div class="para">
-            <p id="cap1">
-                Now that we've looked at the architecture of the internet, let's see how you might
-            </p>
-            <p id="cap2">
-                connect your personal devices to the internet inside your house.
-            </p>
-            <p id="cap3">
-                Well there are many ways to connect to the internet, and
-            </p>
-            <p id="cap4">
-                most often people connect wirelessly.
-            </p>
-            <p id="cap5">
-                Let's look at an example of how you can connect to the internet.
-            </p>
-        </div>
-        <div class="para">
-            <p id="cap6">
-                If you live in a city or a town, you probably have a coaxial cable for
-            </p>
-            <p id="cap7">
-                cable Internet, or a phone line if you have DSL, running to the outside of
-            </p>
-            <p id="cap8">
-                your house, that connects you to the Internet Service Provider, or ISP.
-            </p>
-            <p id="cap9">
-                If you live far out in the country, you'll more likely have
-            </p>
-            <p id="cap10">
-                a dish outside your house, connecting you wirelessly to your closest ISP, or
-            </p>
-            <p id="cap11">
-                you might also use the telephone system.
-            </p>
-        </div>
-        <div class="para">
-            <p id="cap12">
-                Whether a wire comes straight from the ISP hookup outside your house, or
-            </p>
-            <p id="cap13">
-                it travels over radio waves from your roof,
-            </p>
-            <p id="cap14">
-                the first stop a wire will make once inside your house, is at your modem.
-            </p>
-            <p id="cap15">
-                A modem is what connects the internet to your network at home.
-            </p>
-            <p id="cap16">
-                A few common residential modems are DSL or...
-            </p>
-        </div>
+        <div id="tran-script">
         </div>
         <script src="script.js"></script>
     </body>

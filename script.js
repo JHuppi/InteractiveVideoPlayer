@@ -1,37 +1,38 @@
 var videoContainer = document.getElementById('video-container');
 var video = document.getElementById('video');
 var container = document.getElementById('container');
+var track = document.getElementById("entrack");
 
 var progress = document.getElementById("progress");
 var bufferBar = document.getElementById('buffer');
 var progressBar = document.getElementById("time-bar");
-
 
 var playButton = document.getElementById("play-pause");
 var duration = document.getElementById("duration");
 var volumeTotal = document.getElementById("volume-total");
 var volumeBar = document.getElementById("volume-bar");
 var muteButton = document.getElementById("mute-unmute");
+var ccButton = document.getElementById("captions");
 var fullScreenButton = document.getElementById("full-screen");
-
-var cap = [document.getElementById("cap1"),
-            document.getElementById("cap2"),
-            document.getElementById("cap3"),
-            document.getElementById("cap4"),
-            document.getElementById("cap5"),
-            document.getElementById("cap6"),
-            document.getElementById("cap7"),
-            document.getElementById("cap8"),
-            document.getElementById("cap9"),
-            document.getElementById("cap10"),
-            document.getElementById("cap11"),
-            document.getElementById("cap12"),
-            document.getElementById("cap13"),
-            document.getElementById("cap14"),
-            document.getElementById("cap15"),
-            document.getElementById("cap16")];
+var tranScript = document.getElementById("tran-script");
 
 video.controls = false;
+
+//Load Transcript
+document.addEventListener("DOMContentLoaded", function() {
+        track.mode = "hidden";
+        video.textTracks[0].mode = "hidden";
+});
+var videoCaptionList
+track.addEventListener("load", function(){
+    videoCaptionList = video.textTracks[0].cues;
+    for (var i = 0; i < videoCaptionList.length; i++) {
+        var newPara = document.createElement("p");
+        newPara.id = "" + (i+1);
+        newPara.innerHTML = videoCaptionList[i].text;
+        tranScript.appendChild(newPara);
+    }
+});
 
 //Play-Pause Button
 playButton.addEventListener("click", function() {
@@ -47,23 +48,20 @@ playButton.addEventListener("click", function() {
 //Duration Display
 video.addEventListener('loadedmetadata', function() {
     duration.innerHTML = "00:00 / " + videoDuration();
-    var track = document.createElement("track");
-    track.kind = "captions";
-    track.label = "English";
-    track.srclang = "en";
-    track.src = "video/captions.vtt";
-    track.addEventListener("load", function() {
-        this.mode = "showing";
-        video.textTracks[0].mode = "showing";
-    });
-    this.appendChild(track);
 });
 
 //Volume Bar Interactivity
 volumeTotal.addEventListener('click', function(e) {
-   var position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
-   video.volume = position / 1;
-   volumeBar.style.width =  (position*100) / 1 + "%";
+   var position;
+   if (isFullScreen()) {
+        position = (e.pageX - this.offsetLeft) / this.offsetWidth;
+        video.volume = position / 1;
+        volumeBar.style.width =  (position*100) / 1 + "%";
+   } else {
+        position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
+        video.volume = position / 1;
+        volumeBar.style.width =  (position*100) / 1 + "%";
+   }
 });
 
 //Mute-Unmute Button
@@ -76,6 +74,21 @@ muteButton.addEventListener("click", function() {
         video.muted = false;
         muteButton.innerHTML = '<img src="icon/volume-on-icon.png" alt="Mute">';
         volumeBar.style.width = (video.volume*100) / 1 + "%";
+    }
+});
+
+var captionStatus;
+//Captions Button
+ccButton.addEventListener("click", function() {
+    if (captionStatus) {
+        ccButton.style.color = "#888";
+        video.textTracks[0].mode = "hidden";
+        captionStatus = false;
+    } else {
+        ccButton.style.color = "white";
+        this.mode = "showing";
+        video.textTracks[0].mode = "showing";
+        captionStatus = true;
     }
 });
 
@@ -122,9 +135,6 @@ progress.addEventListener("click", function(e) {
         position = (e.pageX - this.offsetLeft - container.offsetLeft) / this.offsetWidth;
         video.currentTime = position * video.duration;
     }
-    for (var i = 0; i < cap.length; i++) {
-        cap[i].style.color = "black";
-    } 
 });
 
 progress.addEventListener("mousedown", function() {
@@ -152,151 +162,44 @@ function currentDuration() {
                        + (currentVideoSec < 10 ? "0" : "") + currentVideoSec;
     return currentFormat;
 }
-
-video.addEventListener('canplay', function() {
-        var currentBuffer = video.buffered.end(video.buffered.length-1);
+video.addEventListener('progress', function() {
+    if (video.readyState === 4) {
+        var currentBuffer = video.buffered.end(0);
         bufferBar.style.width = Math.round(currentBuffer/video.duration*100) + "%";
+    }
 });
 
 video.addEventListener("timeupdate", function() {
     progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
     duration.innerHTML = currentDuration() + " / " 
                        + videoDuration();
-    switch(currentDuration()) {
-        case "00:00": 
-            cap[0].style.color = "orange";
-            break;
-        case "00:04":
-            cap[0].style.color = "black";
-            cap[1].style.color = "orange";
-            break;
-        case "00:08":
-            cap[1].style.color = "black";
-            cap[2].style.color = "orange";
-            break;
-        case "00:11":
-            cap[2].style.color = "black";
-            cap[3].style.color = "orange";
-            break;
-        case "00:13":
-            cap[3].style.color = "black";
-            cap[4].style.color = "orange";
-            break;
-        case "00:18":
-            cap[4].style.color = "black";
-            cap[5].style.color = "orange";
-            break;
-        case "00:22":
-            cap[5].style.color = "black";
-            cap[6].style.color = "orange";
-            break;
-        case "00:26":
-            cap[6].style.color = "black";
-            cap[7].style.color = "orange";
-            break;
-        case "00:32":
-            cap[7].style.color = "black";
-            cap[8].style.color = "orange";
-            break;
-        case "00:35":
-            cap[8].style.color = "black";
-            cap[9].style.color = "orange";
-            break;
-        case "00:40":
-            cap[9].style.color = "black";
-            cap[10].style.color = "orange";
-            break;
-        case "00:42":
-            cap[10].style.color = "black";
-            cap[11].style.color = "orange";
-            break;
-        case "00:46":
-            cap[11].style.color = "black";
-            cap[12].style.color = "orange";
-            break;
-        case "00:49":
-            cap[12].style.color = "black";
-            cap[13].style.color = "orange";
-            break;
-        case "00:54":
-            cap[13].style.color = "black";
-            cap[14].style.color = "orange";
-            break;
-        case "00:58":
-            cap[14].style.color = "black";
-            cap[15].style.color = "orange";
-            break;
-        default: cap[15].style.color = "black";
+});
+
+//Update Transcript
+track.addEventListener("cuechange", function(){
+    var currentCue = track.track.activeCues;
+    if(currentCue.length > 0) {
+        var newId = currentCue[0].id;
+        var newPara = "" + newId;
+        document.getElementById(newPara).style.color = "orange";
+        for (var i = 1; i <= videoCaptionList.length; i++) {
+            if (videoCaptionList[i-1].id != newId) {
+                document.getElementById(""+i).style.color = "black";
+            }
+        }
     }
 });
 
-function tranScript(time) {
-    for (var i = 0; i < cap.length; i++) {
-        cap[i].style.color = "black";
+var paraGraph = document.getElementsByTagName("p");
+
+tranScript.addEventListener("click", doSomething);
+
+function doSomething(e) {
+    if (e.target !== e.currentTarget) {
+        var paraId = parseInt(e.target.id);
+        var cueStart = videoCaptionList[paraId-1].startTime;
+        video.currentTime = cueStart + .01;
     }
-    video.currentTime = time;
+    e.stopPropagation();
 }
 
-cap[0].addEventListener('click', function() {
-    tranScript(0);
-});
-
-cap[1].addEventListener('click', function() {
-    tranScript(4);
-});
-
-cap[2].addEventListener('click', function() {
-    tranScript(8);
-});
-
-cap[3].addEventListener('click', function() {
-    tranScript(11);
-});
-
-cap[4].addEventListener('click', function() {
-    tranScript(13);
-});
-
-cap[5].addEventListener('click', function() {
-    tranScript(18);
-});
-
-cap[6].addEventListener('click', function() {
-    tranScript(22);
-});
-
-cap[7].addEventListener('click', function() {
-    tranScript(26);
-});
-
-cap[8].addEventListener('click', function() {
-    tranScript(32);
-});
-
-cap[9].addEventListener('click', function() {
-    tranScript(35);
-});
-
-cap[10].addEventListener('click', function() {
-    tranScript(40);
-});
-
-cap[11].addEventListener('click', function() {
-    tranScript(42);
-});
-
-cap[12].addEventListener('click', function() {
-    tranScript(46);
-});
-
-cap[13].addEventListener('click', function() {
-    tranScript(49);
-});
-
-cap[14].addEventListener('click', function() {
-    tranScript(54);
-});
-
-cap[15].addEventListener('click', function() {
-    tranScript(58);
-});

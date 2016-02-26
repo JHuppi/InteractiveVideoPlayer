@@ -89,13 +89,21 @@ button:focus {
     background: orange;
 }
 
-.para {
+#captions {
+    font-weight: bold;
+    color: #888;
+}
+
+#tran-script {
     display: block;
     margin: 10px 20px;
 }
 
-.para p {
+#tran-script p {
     display: inline;
+    margin-right: 0.5em;
+    line-height: 1.5em;
+    cursor: pointer;
 }
 
 @media (orientation: landscape) {
