@@ -209,15 +209,12 @@ track.addEventListener("cuechange", function(){
 
 var paraGraph = document.getElementsByTagName("p");
 
-for (var i = 0; i < paraGraph.length; i++) {
-    paraGraph[i].addEventListener("click", bindClick(i));
+testPara.addEventListener("click", doSomething);
+
+function doSomething(e) {
+    var paraId = parseInt(paraGraph[e].id);
+    var cueStart = videoCaptionList[paraId].startTime;
+    video.currentTime = cueStart;
+    console.log("The click is working");
 }
 
-function bindClick(i) {
-    return function(){
-        var paraId = parseInt(paraGraph[i].id);
-        var cueStart = videoCaptionList[paraId].startTime;
-        video.currentTime = cueStart;
-        console.log("The click is working");       
-    }
-}
