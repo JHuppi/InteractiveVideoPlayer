@@ -217,6 +217,7 @@ function bindClick(i) {
     return function(){
         var paraId = parseInt(paraGraph[i].id);
         var cueStart = videoCaptionList[paraId].startTime;
-        video.currentTime = cueStart;       
+        video.currentTime = cueStart;
+        console.log("The click is working");       
     }
 }
