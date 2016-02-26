@@ -209,7 +209,7 @@ track.addEventListener("cuechange", function(){
 
 var paraGraph = document.getElementsByTagName("p");
 
-for (var i; i < paraGraph.length; i++) {
+for (var i = 0; i < paraGraph.length; i++) {
     paraGraph[i].addEventListener("click", bindClick(i));
 }
 
