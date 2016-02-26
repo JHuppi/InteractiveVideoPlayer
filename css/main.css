@@ -101,7 +101,8 @@ button:focus {
 
 #tran-script p {
     display: inline;
-    margin-right: 5px;
+    margin-right: 1em;
+    line-height: 1.5em;
 }
 
 @media (orientation: landscape) {
