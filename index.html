@@ -9,32 +9,32 @@
     </head>
     <body>
         <div id="container">
-        <div id="video-container">
-            <video id="video" preload="auto">
-                <source src="video/video.mp4" type="video/mp4">
-                <source src="video/video.ogg" type="video/ogg">
-                <track id="entrack" label="English" kind="subtitles" src="video/captions.vtt" srclang="en">
-            </video>
-            <div id="bar-container">
-                <div id="bar">
-                    <div id="progress">
-                        <span id="buffer"></span>
-                        <span id="time-bar"></span>
+            <div id="video-container">
+                <video id="video" preload="auto">
+                    <source src="video/video.mp4" type="video/mp4">
+                    <source src="video/video.ogg" type="video/ogg">
+                    <track id="entrack" label="English" kind="subtitles" src="video/captions.vtt" srclang="en">
+                </video>
+                <div id="bar-container">
+                    <div id="bar">
+                        <div id="progress">
+                            <span id="buffer"></span>
+                            <span id="time-bar"></span>
+                        </div>
                     </div>
-                </div>
-                <div id="controls">
-                    <button type="button" id="play-pause"><img src="icon/play-icon.png" alt="play"></button>
-                    <div id="duration">Duration</div>
-                    <div id="volume-total">
-                        <span id="volume-bar"></span>
+                    <div id="controls">
+                        <button type="button" id="play-pause"><img src="icon/play-icon.png" alt="play"></button>
+                        <div id="duration">Duration</div>
+                        <div id="volume-total">
+                            <span id="volume-bar"></span>
+                        </div>
+                        <button type="button" id="mute-unmute"><img src="icon/volume-on-icon.png" alt="mute unmute"></button>
+                        <button type="button" id="captions">CC</button>
+                        <button type="button" id="full-screen"><img src="icon/fullscreen-icon.png" alt="fullscreen mode"></button>
                     </div>
-                    <button type="button" id="mute-unmute"><img src="icon/volume-on-icon.png" alt="mute unmute"></button>
-                    <button type="button" id="captions">CC</button>
-                    <button type="button" id="full-screen"><img src="icon/fullscreen-icon.png" alt="fullscreen mode"></button>
-                </div>
-            </div>  
-        </div>    
-        <div id="tran-script">
+                </div>  
+            </div>    
+        <div id="tran-script"></div>
         </div>
         <script src="script.js"></script>
     </body>

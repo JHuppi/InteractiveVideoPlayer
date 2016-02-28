@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         track.mode = "hidden";
         video.textTracks[0].mode = "hidden";
 });
-var videoCaptionList
+var videoCaptionList;
 track.addEventListener("load", function(){
     videoCaptionList = video.textTracks[0].cues;
     for (var i = 0; i < videoCaptionList.length; i++) {
@@ -150,16 +150,16 @@ progress.addEventListener("mouseup", function() {
 function videoDuration() {
     var durationVideoMin = Math.floor(video.duration/60);
     var durationVideoSec = Math.floor(video.duration % 60);
-    var durationFormat = (durationVideoMin < 10 ? "0" : "") + durationVideoMin + ":" 
-                       + (durationVideoSec < 10 ? "0" : "") + durationVideoSec;
+    var durationFormat = (durationVideoMin < 10 ? "0" : "") + durationVideoMin + ":" +
+                         (durationVideoSec < 10 ? "0" : "") + durationVideoSec;
     return durationFormat;
 }
 
 function currentDuration() {
     var currentVideoMin = Math.floor(video.currentTime/60);
     var currentVideoSec = Math.floor(video.currentTime % 60);
-    var currentFormat = (currentVideoMin < 10 ? "0" : "") + currentVideoMin + ":" 
-                       + (currentVideoSec < 10 ? "0" : "") + currentVideoSec;
+    var currentFormat = (currentVideoMin < 10 ? "0" : "") + currentVideoMin + ":" +
+                        (currentVideoSec < 10 ? "0" : "") + currentVideoSec;
     return currentFormat;
 }
 video.addEventListener('progress', function() {
@@ -171,8 +171,8 @@ video.addEventListener('progress', function() {
 
 video.addEventListener("timeupdate", function() {
     progressBar.style.width = ((video.currentTime / video.duration) * 100) + "%";  
-    duration.innerHTML = currentDuration() + " / " 
-                       + videoDuration();
+    duration.innerHTML = currentDuration() + " / " +
+                         videoDuration();
 });
 
 //Update Transcript
@@ -190,15 +190,13 @@ track.addEventListener("cuechange", function(){
     }
 });
 
-var paraGraph = document.getElementsByTagName("p");
-
 tranScript.addEventListener("click", doSomething);
 
 function doSomething(e) {
     if (e.target !== e.currentTarget) {
         var paraId = parseInt(e.target.id);
         var cueStart = videoCaptionList[paraId-1].startTime;
-        video.currentTime = cueStart + .01;
+        video.currentTime = cueStart + 0.01;
     }
     e.stopPropagation();
 }
