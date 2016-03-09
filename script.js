@@ -176,19 +176,35 @@ video.addEventListener("timeupdate", function() {
 });
 
 //Update Transcript
-track.addEventListener("cuechange", function(){
-    var currentCue = track.track.activeCues;
-    if(currentCue.length > 0) {
-        var newId = currentCue[0].id;
-        var newPara = "" + newId;
-        document.getElementById(newPara).style.color = "orange";
-        for (var i = 1; i <= videoCaptionList.length; i++) {
-            if (videoCaptionList[i-1].id != newId) {
-                document.getElementById(""+i).style.color = "black";
+if (track.oncuechange !== undefined) {
+    track.addEventListener("cuechange", function(){
+        var currentCue = track.track.activeCues;
+        if(currentCue.length > 0) {
+            var newId = currentCue[0].id;
+            var newPara = "" + newId;
+            document.getElementById(newPara).style.color = "orange";
+            for (var i = 1; i <= videoCaptionList.length; i++) {
+                if (videoCaptionList[i-1].id != newId) {
+                    document.getElementById(""+i).style.color = "black";
+                }
             }
         }
-    }
-});
+    });
+} else {
+    video.addEventListener("timeupdate", function(){
+        var currentCue = track.track.activeCues;
+        if(currentCue.length > 0) {
+            var newId = currentCue[0].id;
+            var newPara = "" + newId;
+            document.getElementById(newPara).style.color = "orange";
+            for (var i = 1; i <= videoCaptionList.length; i++) {
+                if (videoCaptionList[i-1].id != newId) {
+                    document.getElementById(""+i).style.color = "black";
+                }
+            }
+        }
+    });   
+}
 
 tranScript.addEventListener("click", doSomething);
 
